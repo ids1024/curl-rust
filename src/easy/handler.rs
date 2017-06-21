@@ -2609,7 +2609,7 @@ impl<H> Easy2<H> {
         self.inner.handle
     }
 
-    #[cfg(unix)]
+    #[cfg(any(unix, target_os = "redox"))]
     fn setopt_path(&mut self,
                    opt: curl_sys::CURLoption,
                    val: &Path) -> Result<(), Error> {
@@ -2800,7 +2800,7 @@ extern fn seek_cb<H: Handler>(data: *mut c_void,
                               offset: curl_sys::curl_off_t,
                               origin: c_int) -> c_int {
     panic::catch(|| unsafe {
-        let from = if origin == libc::SEEK_SET {
+        let from = if origin == 0 { // XXX
             SeekFrom::Start(offset as u64)
         } else {
             panic!("unknown origin from libcurl: {}", origin);

@@ -571,6 +571,7 @@ impl Multi {
     /// of bounds write which can cause crashes, or worse. The effect of NOT
     /// storing it will possibly save you from the crash, but will make your
     /// program NOT wait for sockets it should wait for...
+    /*
     pub fn fdset(&self,
                  read: Option<&mut fd_set>,
                  write: Option<&mut fd_set>,
@@ -589,6 +590,7 @@ impl Multi {
             }
         }
     }
+    */
 
     /// Attempt to close the multi handle and clean up all associated resources.
     ///

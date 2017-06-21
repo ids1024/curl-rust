@@ -32,9 +32,9 @@ pub type curl_off_t = i64;
 
 pub enum CURL {}
 
-#[cfg(unix)]
+#[cfg(any(unix, target_os = "redox"))]
 pub type curl_socket_t = libc::c_int;
-#[cfg(unix)]
+#[cfg(any(unix, target_os = "redox"))]
 pub const CURL_SOCKET_BAD: curl_socket_t = -1;
 #[cfg(all(windows, target_pointer_width = "32"))]
 pub type curl_socket_t = libc::c_uint;
@@ -1010,11 +1010,13 @@ extern {
                                  curl_handle: *mut CURL) -> CURLMcode;
     pub fn curl_multi_remove_handle(multi_handle: *mut CURLM,
                                     curl_handle: *mut CURL) -> CURLMcode;
+    /*
     pub fn curl_multi_fdset(multi_handle: *mut CURLM,
                             read_fd_set: *mut fd_set,
                             write_fd_set: *mut fd_set,
                             exc_fd_set: *mut fd_set,
                             max_fd: *mut c_int) -> CURLMcode;
+    */
     pub fn curl_multi_wait(multi_handle: *mut CURLM,
                            extra_fds: *mut curl_waitfd,
                            extra_nfds: c_uint,
