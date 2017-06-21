@@ -51,7 +51,6 @@
 
 extern crate curl_sys;
 extern crate libc;
-extern crate socket2;
 
 #[cfg(all(unix, not(target_os = "macos")))]
 extern crate openssl_sys;
