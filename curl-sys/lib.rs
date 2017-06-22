@@ -4,7 +4,7 @@
 extern crate libc;
 #[cfg(not(target_env = "msvc"))]
 extern crate libz_sys;
-#[cfg(all(unix, not(target_os = "macos")))]
+#[cfg(any(all(unix, not(target_os = "macos")), target_os = "redox"))]
 extern crate openssl_sys;
 #[cfg(windows)]
 extern crate winapi;

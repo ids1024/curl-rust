@@ -195,7 +195,6 @@ fn main() {
     cmd.arg("--enable-hidden-symbols");
     cmd.arg("--disable-libcurl-option");
     cmd.arg("--disable-ntlm-wb");
-    cmd.arg("--without-ssl");
 
     run(&mut cmd, "sh");
     run(make()
